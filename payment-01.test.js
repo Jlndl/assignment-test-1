@@ -56,7 +56,7 @@ describe("objects", () => {
     expect(checkCreditCardObject(cc2)).toBe(false);
   });
 
-  it.skip("American Express cards should not be accepted", () => {
+  it("American Express cards should not be accepted", () => {
     const cc1 = {
       number: "37234567012345",
       cvc: "123",
@@ -78,7 +78,7 @@ describe("objects", () => {
     expect(checkPaymentObject(payment)).toBe(true);
   });
 
-  it.skip("check invalid payment object", () => {
+  it("check invalid payment object", () => {
     const payment = {
       sum: -1, // Negative sums are invalid in our api.
     };

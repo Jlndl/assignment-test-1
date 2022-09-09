@@ -28,7 +28,9 @@ function checkCreditCardObject(creditCard) {
   ) {
     return true;
   }
-  return false;
+  if (creditCard.number.startsWith("37" || "34")) {
+    return false;
+  }
 }
 
 /**
@@ -39,10 +41,11 @@ function checkCreditCardObject(creditCard) {
  * @returns {boolean}
  */
 function checkPaymentObject(payment) {
-  if (payment && typeof payment.sum === "number") {
+  if (payment && typeof payment.sum === "number" && payment.sum >= 0) {
     return true;
+  } else {
+    return false;
   }
-  return false;
 }
 
 /**
