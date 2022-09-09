@@ -6,7 +6,7 @@
  * @returns {boolean}
  */
 function checkPersonObject(person) {
-  if ((person && person.firstName && person.lastName) || person.middleName) {
+  if (person && person.firstName && person.lastName) {
     return true;
   }
   return false;

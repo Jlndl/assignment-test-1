@@ -8,12 +8,10 @@ describe("objects", () => {
   it("check valid person object", () => {
     const person1 = {
       firstName: "Mikiko",
-      //middleName:,
       lastName: "Toyoda",
     };
     const person2 = {
       firstName: "Mary",
-      //middleName: "Anna",
       lastName: "Miller",
     };
 
