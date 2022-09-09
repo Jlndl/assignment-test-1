@@ -59,21 +59,24 @@ async function checkCreditCardValidity(creditCardData) {
   if (!validArgs) {
     return false;
   }
-
-  const result = await fetch(
-    "https://api.pihi-group.com/cc/check-credit-card",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(creditCardData),
+  try {
+    const result = await fetch(
+      "https://api.pihi-group.com/cc/check-credit-card",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(creditCardData),
+      }
+    );
+    const json = await result.json();
+    if (json.validCard) {
+      return true;
+    } else {
+      return false;
     }
-  );
-  const json = await result.json();
-  if (json.validCard) {
-    return true;
-  } else {
+  } catch (error) {
     return false;
   }
 }
@@ -90,18 +93,21 @@ async function makePayment(creditCardData, paymentData) {
   if (!validArgs) {
     return false;
   }
-
-  const result = await fetch("https://api.pihi-group.com/cc/make-payment", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ cc: creditCardData, payment: paymentData }),
-  });
-  const json = await result.json();
-  if (json.ok) {
-    return true;
-  } else {
+  try {
+    const result = await fetch("https://api.pihi-group.com/cc/make-payment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ cc: creditCardData, payment: paymentData }),
+    });
+    const json = await result.json();
+    if (json.ok) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
     return false;
   }
 }
